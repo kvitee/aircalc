@@ -18,13 +18,9 @@ class MainWindow : public QMainWindow {
       Qt::WindowFlags flags = Qt::WindowFlags()
     );
 
-    ~MainWindow();
-
-  private:
+  protected:
     void setup();
     void initializeWidgets();
-    void composeWidgets();
-    void connectWidgets();
 };
 
 

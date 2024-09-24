@@ -3,8 +3,10 @@
 #include <QtCore/QSize>
 
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QPushButton>
 
 #include "mainwindow.hpp"
+#include "vtabwidget.hpp"
 
 
 MainWindow::MainWindow(
@@ -15,25 +17,20 @@ MainWindow::MainWindow(
 {
   setup();
   initializeWidgets();
-  composeWidgets();
-  connectWidgets();
 }
-
-MainWindow::~MainWindow() {}
-
 
 void MainWindow::setup() {
   move(QPoint(300, 200));
-  resize(QSize(780, 480));
+  resize(QSize(680, 480));
 
   setWindowTitle("AirCalc");
 }
 
 void MainWindow::initializeWidgets() {
-  QWidget *central_widget = new QWidget(this);
-  setCentralWidget(central_widget);
+  VTabWidget *tw = new VTabWidget(this);
+  setCentralWidget(tw);
+
+  tw->addTab(new QPushButton("Calc 1"), QIcon(":/icons/qt.ico"), "Formula 1");
+  tw->addTab(new QPushButton("Calc 2"), QIcon(":/icons/qt.ico"), "Formula 2");
+  tw->addTab(new QPushButton("Calc 3"), QIcon(":/icons/qt.ico"), "Formula 3");
 }
-
-void MainWindow::composeWidgets() {}
-
-void MainWindow::connectWidgets() {}
