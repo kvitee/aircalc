@@ -7,6 +7,7 @@
 
 #include "mainwindow.hpp"
 #include "vtabwidget.hpp"
+#include "formulawidget.hpp"
 
 
 MainWindow::MainWindow(
@@ -30,7 +31,17 @@ void MainWindow::initializeWidgets() {
   VTabWidget *tw = new VTabWidget(this);
   setCentralWidget(tw);
 
-  tw->addTab(new QPushButton("Calc 1"), QIcon(":/icons/qt.ico"), "Formula 1");
-  tw->addTab(new QPushButton("Calc 2"), QIcon(":/icons/qt.ico"), "Formula 2");
-  tw->addTab(new QPushButton("Calc 3"), QIcon(":/icons/qt.ico"), "Formula 3");
+  tw->addTab(new FormulaWidget(
+    "1/2*b*h",
+    {
+      { "b", "Base" },
+      { "h", "Height" },
+    }
+  ), QIcon(":/icons/qt.ico"), "Triangle Area");
+  tw->addTab(new FormulaWidget(
+    "pi*r^2",
+    {
+      { "r", "Radius" },
+    }
+  ), QIcon(":/icons/qt.ico"), "Circle Area");
 }
