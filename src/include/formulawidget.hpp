@@ -28,7 +28,7 @@ class FormulaWidget : public QWidget {
     );
 
   protected:
-    Formula m_expression;
+    Formula m_formula;
     QMap<QString, double> m_args;
 };
 

@@ -16,7 +16,7 @@ FormulaWidget::FormulaWidget(
   QWidget *parent
 )
   : QWidget(parent),
-    m_expression(expression),
+    m_formula(expression),
     m_args()
 {
   QFormLayout *rootLayout;
@@ -53,7 +53,7 @@ FormulaWidget::FormulaWidget(
     calcButton, &QPushButton::clicked,
     this, [this, resultField]() {
       resultField->setText(QString::number(
-        m_expression.calculate(m_args)
+        m_formula.calculate(m_args)
       ));
     }
   );
