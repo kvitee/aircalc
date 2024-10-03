@@ -32,16 +32,24 @@ void MainWindow::initializeWidgets() {
   setCentralWidget(tw);
 
   tw->addTab(new FormulaWidget(
-    "1/2*b*h",
+    "l_vpp-l_otk",
     {
-      { "b", "Base" },
-      { "h", "Height" },
+      { "l_vpp", "<i>L</i><sub>ВПП</sub>" },
+      { "l_otk", "<i>L</i><sub>ОТК'</sub>" },
     }
-  ), QIcon(":/icons/qt.ico"), "Triangle Area");
+  ), "L_РАСП");
   tw->addTab(new FormulaWidget(
-    "pi*r^2",
+    "7170-10.34*m+4.067*v_otk+0.0035*m^2+0.00518-v_otk*m-0.017*v_otk^2",
     {
-      { "r", "Radius" },
+      { "m", "m" },
+      { "v_otk", "<i>V</i><sub>ОТК</sub>" },
     }
-  ), QIcon(":/icons/qt.ico"), "Circle Area");
+  ), "L_ТОРМ");
+  tw->addTab(new FormulaWidget(
+    "v_otr^2/(2*j_avg)",
+    {
+      { "v_otr", "<i>V</i><sub>отр</sub>" },
+      { "j_avg", "<i>j</i><sub>ср</sub>" },
+    }
+  ), "L_1");
 }
