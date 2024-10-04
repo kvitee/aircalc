@@ -1,3 +1,4 @@
+#include <QtCore/Qt>
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QList>
@@ -5,38 +6,40 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QFormLayout>
+#include <QtWidgets/QVBoxLayout>
 
 #include "formulawidget.hpp"
+#include "parameditwidget.hpp"
 
 
 FormulaWidget::FormulaWidget(
   const QString &expression,
-  const QList<Parameter> &params,
+  const QList<ParamEditWidget::Parameter> &params,
   QWidget *parent
 )
   : QWidget(parent),
     m_formula(expression),
     m_args()
 {
-  QFormLayout *rootLayout;
+  QVBoxLayout *rootLayout;
 
-  QLineEdit *paramField;
+  ParamEditWidget *paramEdit;
   QPushButton *calcButton;
   QLineEdit *resultField;
 
-  rootLayout = new QFormLayout(this);
+  rootLayout = new QVBoxLayout(this);
+  rootLayout->setAlignment(Qt::AlignTop);
 
   for (auto param : params) {
-    paramField = new QLineEdit("0");
-    rootLayout->addRow(param.name, paramField);
+    paramEdit = new ParamEditWidget(param);
+    rootLayout->addWidget(paramEdit);
 
     m_args.insert(param.id, 0.0);
 
     QObject::connect(
-      paramField, &QLineEdit::editingFinished,
-      this, [this, param, paramField]() {
-        m_args[param.id] = paramField->text().toDouble();
+      paramEdit, &ParamEditWidget::valueChanged,
+      this, [this, param](double value) {
+        m_args[param.id] = value;
       }
     );
   }
@@ -46,8 +49,8 @@ FormulaWidget::FormulaWidget(
   resultField = new QLineEdit("0");
   resultField->setDisabled(true);
 
-  rootLayout->addRow(calcButton);
-  rootLayout->addRow(resultField);
+  rootLayout->addWidget(calcButton);
+  rootLayout->addWidget(resultField);
 
   QObject::connect(
     calcButton, &QPushButton::clicked,

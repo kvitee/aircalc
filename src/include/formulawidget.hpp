@@ -10,20 +10,16 @@
 #include <QtWidgets/QWidget>
 
 #include "formula.hpp"
+#include "parameditwidget.hpp"
 
 
 class FormulaWidget : public QWidget {
   Q_OBJECT
 
   public:
-    struct Parameter {
-      QString id;
-      QString name;
-    };
-
     FormulaWidget(
       const QString &expression,
-      const QList<Parameter> &params,
+      const QList<ParamEditWidget::Parameter> &params,
       QWidget *parent = nullptr
     );
 
