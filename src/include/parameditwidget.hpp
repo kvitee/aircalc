@@ -1,5 +1,5 @@
-#ifndef FORMULAPARAMEDIT_HPP_INCLUDED_
-#define FORMULAPARAMEDIT_HPP_INCLUDED_
+#ifndef PARAMEDITWIDGET_HPP_INCLUDED_
+#define PARAMEDITWIDGET_HPP_INCLUDED_
 
 
 #include <QtCore/QObject>
@@ -44,4 +44,4 @@ class ParamEditWidget : public QWidget {
 };
 
 
-#endif  /* FORMULAPARAMEDIT_HPP_INCLUDED_ */ 
+#endif  /* PARAMEDITWIDGET_HPP_INCLUDED_ */ 
