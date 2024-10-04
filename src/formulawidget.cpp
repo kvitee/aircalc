@@ -44,7 +44,7 @@ FormulaWidget::FormulaWidget(
     );
   }
 
-  calcButton = new QPushButton("Calculate");
+  calcButton = new QPushButton("Рассчитать");
 
   resultField = new QLineEdit("0");
   resultField->setDisabled(true);
