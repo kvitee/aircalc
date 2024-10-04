@@ -38,19 +38,19 @@ void MainWindow::initializeWidgets() {
       { "l_vpp", "" },
       { "l_otk", "" },
     }
-  ), QIcon("icons/l_rasp.png"), "");
+  ), QIcon(":/icons/l_rasp.png"), "");
   tw->addTab(new FormulaWidget(
     "7170-10.34*m+4.067*v_otk+0.0035*m^2+0.00518-v_otk*m-0.017*v_otk^2",
     {
       { "m", "" },
       { "v_otk", "" },
     }
-  ), QIcon("icons/l_torm.png"), "");
+  ), QIcon(":/icons/l_torm.png"), "");
   tw->addTab(new FormulaWidget(
     "v_otr^2/(2*j_sr)",
     {
       { "v_otr", "" },
       { "j_sr", "" },
     }
-  ), QIcon("icons/l_1.png"), "");
+  ), QIcon(":/icons/l_1.png"), "");
 }

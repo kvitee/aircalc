@@ -1,5 +1,14 @@
 <RCC>
   <qresource prefix="/">
     <file>icons/qt.ico</file>
+    <file>icons/j_sr.png</file>
+    <file>icons/l_1.png</file>
+    <file>icons/l_otk.png</file>
+    <file>icons/l_rasp.png</file>
+    <file>icons/l_torm.png</file>
+    <file>icons/l_vpp.png</file>
+    <file>icons/m.png</file>
+    <file>icons/v_otk.png</file>
+    <file>icons/v_otr.png</file>
   </qresource>
 </RCC>

@@ -12,7 +12,7 @@ ParamEditWidget::ParamEditWidget(
   : QWidget(parent),
     m_labelWidget(new QLabel(param.name)),
     m_fieldWidget(new QLineEdit("0")),
-    m_icon(QString("icons/") + param.id + QString(".png"))
+    m_icon(QString(":/icons/") + param.id + QString(".png"))
 {
   setupWidgets();
   composeWidgets();
