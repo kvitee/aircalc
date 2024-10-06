@@ -67,6 +67,9 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 
+# Autogen directories
+*_autogen/
+
 # IDE
 .vscode/
 .vs/
