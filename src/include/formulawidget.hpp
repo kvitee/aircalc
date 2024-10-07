@@ -8,6 +8,8 @@
 #include <QtCore/QMap>
 
 #include <QtWidgets/QWidget>
+#include <QtWidgets/QLineEdit>
+#include <QtWidgets/QPushButton>
 
 #include "formula.hpp"
 #include "parameditwidget.hpp"
@@ -19,11 +21,21 @@ class FormulaWidget : public QWidget {
   public:
     FormulaWidget(
       const QString &expression,
+      QWidget *parent = nullptr
+    );
+
+    FormulaWidget(
+      const QString &expression,
       const QList<ParamEditWidget::Parameter> &params,
       QWidget *parent = nullptr
     );
 
+    void addParam(const ParamEditWidget::Parameter &param);
+
   protected:
+    QPushButton *m_calcButton;
+    QLineEdit *m_resultField;
+
     Formula m_formula;
     QMap<QString, double> m_args;
 };

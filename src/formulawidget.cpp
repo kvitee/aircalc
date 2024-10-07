@@ -14,50 +14,55 @@
 
 FormulaWidget::FormulaWidget(
   const QString &expression,
-  const QList<ParamEditWidget::Parameter> &params,
   QWidget *parent
 )
   : QWidget(parent),
+    m_resultField(new QLineEdit("0")),
+    m_calcButton(new QPushButton("Рассчитать")),
     m_formula(expression),
     m_args()
 {
-  QVBoxLayout *rootLayout;
-
-  ParamEditWidget *paramEdit;
-  QPushButton *calcButton;
-  QLineEdit *resultField;
-
-  rootLayout = new QVBoxLayout(this);
+  QVBoxLayout *rootLayout = new QVBoxLayout(this);
   rootLayout->setAlignment(Qt::AlignTop);
+  rootLayout->setDirection(QBoxLayout::Up);
 
-  for (auto param : params) {
-    paramEdit = new ParamEditWidget(param);
-    rootLayout->addWidget(paramEdit);
+  m_resultField->setDisabled(true);
 
-    m_args.insert(param.id, 0.0);
-
-    QObject::connect(
-      paramEdit, &ParamEditWidget::valueChanged,
-      this, [this, param](double value) {
-        m_args[param.id] = value;
-      }
-    );
-  }
-
-  calcButton = new QPushButton("Рассчитать");
-
-  resultField = new QLineEdit("0");
-  resultField->setDisabled(true);
-
-  rootLayout->addWidget(calcButton);
-  rootLayout->addWidget(resultField);
+  rootLayout->addWidget(m_resultField);
+  rootLayout->addWidget(m_calcButton);
 
   QObject::connect(
-    calcButton, &QPushButton::clicked,
-    this, [this, resultField]() {
-      resultField->setText(QString::number(
+    m_calcButton, &QPushButton::clicked,
+    this, [this]() {
+      m_resultField->setText(QString::number(
         m_formula.calculate(m_args)
       ));
+    }
+  );
+}
+
+FormulaWidget::FormulaWidget(
+  const QString &expression,
+  const QList<ParamEditWidget::Parameter> &params,
+  QWidget *parent
+)
+  : FormulaWidget(expression, parent)
+{
+  for (const auto &param : params) {
+    addParam(param);
+  }
+}
+
+void FormulaWidget::addParam(const ParamEditWidget::Parameter &param) {
+  ParamEditWidget *paramEdit = new ParamEditWidget(param);
+  static_cast<QHBoxLayout *>(layout())->insertWidget(2, paramEdit);
+
+  m_args.insert(param.id, 0.0);
+
+  QObject::connect(
+    paramEdit, &ParamEditWidget::valueChanged,
+    this, [this, param](double value) {
+      m_args[param.id] = value;
     }
   );
 }
