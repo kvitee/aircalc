@@ -25,6 +25,7 @@ jobs:
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
         os: [ubuntu-latest, windows-latest]
+        os_type: [linux, windows]
         build_type: [Release]
         c_compiler: [gcc, clang, cl]
         include:
@@ -54,7 +55,7 @@ jobs:
         # Version of Qt to install
         version: "5.15.2"
         # Host platform
-        host: ${{ matrix.os }}
+        host: ${{ matrix.os_type }}
         # Target platform for build
         target: "desktop"
 
