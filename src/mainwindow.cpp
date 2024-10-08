@@ -1,4 +1,8 @@
 #include <QtCore/Qt>
+#include <QtCore/QJsonDocument>
+#include <QtCore/QJsonArray>
+#include <QtCore/QJsonObject>
+#include <QtCore/QFile>
 #include <QtCore/QPoint>
 #include <QtCore/QSize>
 
@@ -32,25 +36,35 @@ void MainWindow::initializeWidgets() {
   VTabWidget *tw = new VTabWidget(this);
   setCentralWidget(tw);
 
-  tw->addTab(new FormulaWidget(
-    "l_vpp-l_otk",
-    {
-      { "l_vpp", "" },
-      { "l_otk", "" },
+  QFile f(":/config/formulas.json");
+  f.open(QIODevice::ReadOnly);
+
+  QJsonDocument doc = QJsonDocument::fromJson(f.readAll());
+
+  f.close();
+
+  for (auto formula : doc.array()) {
+    if (!formula.isObject()) continue;
+
+    auto f_obj = formula.toObject();
+
+    FormulaWidget *tab = new FormulaWidget(f_obj["expr"].toString());
+
+    tw->addTab(
+      tab,
+      QIcon(QString(":/icons/") + f_obj["id"].toString() + QString(".png")),
+      f_obj["name"].toString()
+    );
+
+    for (auto p : f_obj["params"].toArray()) {
+      if (!p.isObject()) continue;
+
+      auto p_obj = p.toObject();
+
+      tab->addParam({
+        p_obj["id"].toString(),
+        p_obj["name"].toString()
+      });
     }
-  ), QIcon(":/icons/l_rasp.png"), "");
-  tw->addTab(new FormulaWidget(
-    "7170-10.34*m+4.067*v_otk+0.0035*m^2+0.00518-v_otk*m-0.017*v_otk^2",
-    {
-      { "m", "" },
-      { "v_otk", "" },
-    }
-  ), QIcon(":/icons/l_torm.png"), "");
-  tw->addTab(new FormulaWidget(
-    "v_otr^2/(2*j_sr)",
-    {
-      { "v_otr", "" },
-      { "j_sr", "" },
-    }
-  ), QIcon(":/icons/l_1.png"), "");
+  }
 }

@@ -10,5 +10,7 @@
     <file>icons/m.png</file>
     <file>icons/v_otk.png</file>
     <file>icons/v_otr.png</file>
+
+    <file>config/formulas.json</file>
   </qresource>
 </RCC>

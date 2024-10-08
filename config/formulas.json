@@ -1,0 +1,47 @@
+[
+    {
+        "id": "l_rasp",
+        "name": "",
+        "expr": "l_vpp-l_otk",
+        "params": [
+            {
+                "id": "l_vpp",
+                "name": ""
+            },
+            {
+                "id": "l_otk",
+                "name": ""
+            }
+        ]
+    },
+    {
+        "id": "l_torm",
+        "name": "",
+        "expr": "7170-10.34*m+4.067*v_otk+0.0035*m^2+0.00518-v_otk*m-0.017*v_otk^2",
+        "params": [
+            {
+                "id": "m",
+                "name": ""
+            },
+            {
+                "id": "v_otk",
+                "name": ""
+            }
+        ]
+    },
+    {
+        "id": "l_1",
+        "name": "",
+        "expr": "v_otr^2/(2*j_sr)",
+        "params": [
+            {
+                "id": "v_otr",
+                "name": ""
+            },
+            {
+                "id": "j_sr",
+                "name": ""
+            }
+        ]
+    }
+]
