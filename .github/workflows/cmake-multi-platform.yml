@@ -37,6 +37,11 @@ jobs:
             os_type: linux
             c_compiler: gcc
             cpp_compiler: g++
+        exclude:
+          - os: windows-latest
+            os_type: linux
+          - os: ubuntu-latest
+            os_type: windows
 
     steps:
     - uses: actions/checkout@v4
