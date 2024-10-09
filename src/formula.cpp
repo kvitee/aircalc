@@ -1,6 +1,6 @@
+#include <cmath>
 #include <cstdlib>
 #include <string>
-#include <cmath>
 
 #include <QtCore/QString>
 #include <QtCore/QPair>
