@@ -14,8 +14,6 @@ Formula::Formula(const QString &expr)
   : m_expr(expr) {}
 
 const QMap<QString, double> Formula::m_consts = {
-  { "pi", M_PIl },
-  { "e", M_El },
 };
 
 const QMap<QChar, QPair<quint8, Formula::fn_t>> Formula::m_ops = {
