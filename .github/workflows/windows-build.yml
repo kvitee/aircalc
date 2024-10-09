@@ -1,0 +1,39 @@
+name: Build on Windows
+
+on:
+  push:
+    tags:
+      - "v\\d+.\\d+.\\d+"
+
+jobs:
+  build:
+    runs-on: windows-2022
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4.0.0
+      with:
+        version: "5.15.2"
+        host: "windows"
+        target: "desktop"
+
+    - name: Configure CMake
+      run: cmake .
+
+    - name: Build
+      run: cmake --build .
+
+    - name: Archive builded binaries
+      uses: actions/upload-artifact@v4
+      with:
+        name: aircalc-binaries-windows
+        path: bin/
+
+    - name: Download builded binaries
+      uses: actions/download-artifact@v4
+      with:
+        name: aircalc-binaries-windows
+        path: bin/
