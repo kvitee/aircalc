@@ -13,6 +13,8 @@ endif()
 
 include_directories(src/include/)
 
+add_compile_definitions(_USE_MATH_DEFINES)
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
