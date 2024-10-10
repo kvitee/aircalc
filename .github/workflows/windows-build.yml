@@ -36,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: qt-installation
-        path: ../Qt
+        path: $RUNNER_WORKSPACE/Qt
 
     - name: Download built binaries
       uses: actions/download-artifact@v4
