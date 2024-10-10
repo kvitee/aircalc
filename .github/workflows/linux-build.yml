@@ -2,7 +2,7 @@ name: Build on Linux
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "linux-build" ]
 
 env:
   BUILD_TYPE: Release
