@@ -6,7 +6,7 @@ on:
       - "v\\d+.\\d+.\\d+"
 
 jobs:
-  build:
+  Build:
     runs-on: windows-2022
 
     steps:
@@ -24,15 +24,15 @@ jobs:
       run: cmake .
 
     - name: Build
-      run: cmake --build .
+      run: cmake -DCMAKE_BUILD_TYPE=Release --build .
 
-    - name: Archive builded binaries
+    - name: Archive built binaries
       uses: actions/upload-artifact@v4
       with:
         name: aircalc-binaries-windows
         path: bin/
 
-    - name: Download builded binaries
+    - name: Download built binaries
       uses: actions/download-artifact@v4
       with:
         name: aircalc-binaries-windows
