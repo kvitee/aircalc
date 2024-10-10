@@ -18,7 +18,7 @@ set(CMAKE_AUTORCC ON)
 
 find_package(Qt5 COMPONENTS Core Widgets Gui REQUIRED)
 
-add_executable(aircalc
+add_executable(aircalc WIN32
   src/include/application.hpp
   src/include/mainwindow.hpp
   src/include/vtabwidget.hpp
