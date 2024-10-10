@@ -21,10 +21,10 @@ jobs:
         target: "desktop"
 
     - name: Configure CMake
-      run: cmake .
+      run: cmake -DCMAKE_BUILD_TYPE=Release -B .
 
     - name: Build
-      run: cmake -DCMAKE_BUILD_TYPE=Release --build .
+      run: cmake --build .
 
     - name: Archive built binaries
       uses: actions/upload-artifact@v4
