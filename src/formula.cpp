@@ -1,6 +1,7 @@
+#define _USE_MATH_DEFINES
+#include <cmath>
 #include <cstdlib>
 #include <string>
-#include <cmath>
 
 #include <QtCore/QString>
 #include <QtCore/QPair>
@@ -14,8 +15,8 @@ Formula::Formula(const QString &expr)
   : m_expr(expr) {}
 
 const QMap<QString, double> Formula::m_consts = {
-  { "pi", M_PIl },
-  { "e", M_El },
+  { "pi", M_PI },
+  { "e", M_E },
 };
 
 const QMap<QChar, QPair<quint8, Formula::fn_t>> Formula::m_ops = {
