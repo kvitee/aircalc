@@ -32,8 +32,20 @@ jobs:
         name: aircalc-binaries-windows
         path: bin/
 
+    - name: Archive Qt Installation
+      uses: actions/upload-artifact@v4
+      with:
+        name: qt-installation
+        path: ../Qt
+
     - name: Download built binaries
       uses: actions/download-artifact@v4
       with:
         name: aircalc-binaries-windows
         path: bin/
+
+    - name: Download Qt Installation
+      uses: actions/download-artifact@v4
+      with:
+        name: qt-installation
+        path: ../Qt
