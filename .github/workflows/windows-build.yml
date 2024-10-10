@@ -29,8 +29,9 @@ jobs:
       run: cmake --build ${{ github.workspace }} --config ${{ env.BUILD_TYPE }}
 
     - name: Deploy
-      run: cd bin/${{ env.BUILD_TYPE }}
-      run: windeployqt aircalc.exe
+      run: |
+        cd bin/${{ env.BUILD_TYPE }}
+        run: windeployqt aircalc.exe
 
     - name: Archive built binaries
       uses: actions/upload-artifact@v4
