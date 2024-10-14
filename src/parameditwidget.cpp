@@ -24,6 +24,7 @@ void ParamEditWidget::setupWidgets() {
   m_labelWidget->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
   m_labelWidget->setToolTip(m_labelWidget->text());
 
+  m_fieldWidget->setMinimumHeight(40);
   m_fieldWidget->setValidator(new QDoubleValidator());
 }
 
