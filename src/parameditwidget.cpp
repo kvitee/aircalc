@@ -1,6 +1,16 @@
+#include <QtCore/Qt>
+#include <QtCore/QObject>
+#include <QtCore/QString>
+
+#include <QtWidgets/QWidget>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QHBoxLayout>
 
+#include <QtGui/QPixmap>
+#include <QtGui/QResizeEvent>
 #include <QtGui/QDoubleValidator>
+#include <QtGui/QFont>
 
 #include "parameditwidget.hpp"
 
@@ -26,6 +36,11 @@ void ParamEditWidget::setupWidgets() {
 
   m_fieldWidget->setMinimumHeight(40);
   m_fieldWidget->setValidator(new QDoubleValidator());
+
+  QFont font = m_fieldWidget->font();
+  font.setPointSize(12);
+
+  m_fieldWidget->setFont(font);
 }
 
 void ParamEditWidget::composeWidgets() {

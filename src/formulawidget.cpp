@@ -8,6 +8,8 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QVBoxLayout>
 
+#include <QtGui/QFont>
+
 #include "formulawidget.hpp"
 #include "parameditwidget.hpp"
 
@@ -27,6 +29,12 @@ FormulaWidget::FormulaWidget(
   rootLayout->setDirection(QBoxLayout::Up);
 
   m_resultField->setDisabled(true);
+
+  QFont font = m_resultField->font();
+  font.setPointSize(12);
+
+  m_resultField->setFont(font);
+  m_calcButton->setFont(font);
 
   rootLayout->addWidget(m_resultField);
   rootLayout->addWidget(m_calcButton);
