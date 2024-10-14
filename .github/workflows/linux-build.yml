@@ -39,4 +39,3 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: "aircalc-linux-${{ github.ref_name }}"
-        path: bin/
