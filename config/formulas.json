@@ -1,47 +1,147 @@
 [
     {
         "id": "l_rasp",
-        "name": "",
         "expr": "l_vpp-l_otk",
         "params": [
-            {
-                "id": "l_vpp",
-                "name": ""
-            },
-            {
-                "id": "l_otk",
-                "name": ""
-            }
+            { "id": "l_vpp" },
+            { "id": "l_otk" }
         ]
     },
     {
         "id": "l_torm",
-        "name": "",
         "expr": "7170-10.34*m+4.067*v_otk+0.0035*m^2+0.00518-v_otk*m-0.017*v_otk^2",
         "params": [
-            {
-                "id": "m",
-                "name": ""
-            },
-            {
-                "id": "v_otk",
-                "name": ""
-            }
+            { "id": "m" },
+            { "id": "v_otk" }
         ]
     },
     {
         "id": "l_1",
-        "name": "",
         "expr": "v_otr^2/(2*j_sr)",
         "params": [
-            {
-                "id": "v_otr",
-                "name": ""
-            },
-            {
-                "id": "j_sr",
-                "name": ""
-            }
+            { "id": "v_otr" },
+            { "id": "j_sr" }
+        ]
+    },
+    {
+        "id": "v_otr_2",
+        "expr": "2*g/(c_y*rho*s_kr)",
+        "params": [
+            { "id": "g" },
+            { "id": "c_y" },
+            { "id": "rho" },
+            { "id": "s_kr" }
+        ]
+    },
+    {
+        "id": "_l_1",
+        "expr": "l_1/l_vpp",
+        "params": [
+            { "id": "l_1" },
+            { "id": "l_vpp" }
+        ]
+    },
+    {
+        "id": "_l_2",
+        "expr": "l_2/l_vpp",
+        "params": [
+            { "id": "l_2" },
+            { "id": "l_vpp" }
+        ]
+    },
+    {
+        "id": "xi_1",
+        "expr": "(_l_1+_l_2)/2*_l_vpp",
+        "params": [
+            { "id": "_l_1" },
+            { "id": "_l_2" },
+            { "id": "_l_vpp" }
+        ]
+    },
+    {
+        "id": "_l_vpp",
+        "expr": "l_vpp/m_vzl_max",
+        "params": [
+            { "id": "l_vpp" },
+            { "id": "m_vzl_max" }
+        ]
+    },
+    {
+        "id": "j_otk_sr",
+        "expr": "(v_vzl^2-v_otk^2)/(2*l_prod)",
+        "params": [
+            { "id": "v_vzl" },
+            { "id": "v_otk" },
+            { "id": "l_prod" }
+        ]
+    },
+    {
+        "id": "j_otk_sr",
+        "expr": "(p_pf-dp-dx-df_tr)/m",
+        "params": [
+            { "id": "m" },
+            { "id": "p_pf" },
+            { "id": "dp" },
+            { "id": "dx" },
+            { "id": "df_tr" }
+        ]
+    },
+    {
+        "id": "dp",
+        "expr": "m*(j_sr-j_otk_sr)",
+        "params": [
+            { "id": "m" },
+            { "id": "j_sr" },
+            { "id": "j_otk_sr" }
+        ]
+    },
+    {
+        "id": "dp_2",
+        "expr": "dp-dp_1",
+        "params": [
+            { "id": "dp" },
+            { "id": "dp_1" }
+        ]
+    },
+    {
+        "id": "dp_1",
+        "expr": "dp/2",
+        "params": [
+            { "id": "dp" }
+        ]
+    },
+    {
+        "id": "dr",
+        "expr": "dp_1-dp_2",
+        "params": [
+            { "id": "dp_1" },
+            { "id": "dp_2" }
+        ]
+    },
+    {
+        "id": "dr",
+        "expr": "(m_y_delta_n+m_y_beta+m_ys_sk+m_y_delta_p+m_y_delta_e+dpsi/dt_2*j_y-m_yf_tr)/z_dv",
+        "params": [
+            { "id": "m_y_delta_n" },
+            { "id": "m_y_beta" },
+            { "id": "m_ys_sk" },
+            { "id": "m_y_delta_p" },
+            { "id": "m_y_delta_e" },
+            { "id": "dpsi" },
+            { "id": "dt_2" },
+            { "id": "j_y" },
+            { "id": "m_yf_tr" },
+            { "id": "z_dv" }
+        ]
+    },
+    {
+        "id": "dpsi_dt",
+        "expr": "2*z_a/(m*(v_otk+v_vzl))",
+        "params": [
+            { "id": "z_a" },
+            { "id": "m" },
+            { "id": "v_otk" },
+            { "id": "v_vzl" }
         ]
     }
 ]
