@@ -1,48 +1,104 @@
 <RCC>
   <qresource prefix="/">
     <file>icons/qt.ico</file>
+    <file>icons/alpha_pk.png</file>
+    <file>icons/beta.png</file>
+    <file>icons/b.png</file>
+    <file>icons/c_x.png</file>
     <file>icons/c_y.png</file>
+    <file>icons/c_z_delta_n.png</file>
+    <file>icons/c_z.png</file>
+    <file>icons/c_z_s_n.png</file>
+    <file>icons/delta_n.png</file>
+    <file>icons/delta_nru.png</file>
     <file>icons/df_tr.png</file>
-    <file>icons/dp.png</file>
+    <file>icons/dn_ok.png</file>
+    <file>icons/dn_opor.png</file>
+    <file>icons/dn_pk.png</file>
     <file>icons/dp_1.png</file>
     <file>icons/dp_2.png</file>
-    <file>icons/dpsi.png</file>
+    <file>icons/dp.png</file>
     <file>icons/dpsi_dt.png</file>
+    <file>icons/dpsi.png</file>
     <file>icons/dr.png</file>
     <file>icons/dt_2.png</file>
+    <file>icons/dv_z.png</file>
     <file>icons/dx.png</file>
+    <file>icons/f_sk.png</file>
+    <file>icons/f_tr_sk.png</file>
     <file>icons/g.png</file>
     <file>icons/j_otk_sr.png</file>
+    <file>icons/j_sr_otk.png</file>
     <file>icons/j_sr.png</file>
     <file>icons/j_y.png</file>
     <file>icons/_l_1.png</file>
     <file>icons/l_1.png</file>
     <file>icons/_l_2.png</file>
     <file>icons/l_2.png</file>
+    <file>icons/_l_3.png</file>
+    <file>icons/l_3.png</file>
     <file>icons/l_otk.png</file>
+    <file>icons/l.png</file>
     <file>icons/l_prod.png</file>
     <file>icons/l_rasp.png</file>
     <file>icons/l_torm.png</file>
+    <file>icons/l_vo.png</file>
     <file>icons/_l_vpp.png</file>
     <file>icons/l_vpp.png</file>
+    <file>icons/mc_y.png</file>
+    <file>icons/mc_y_s_n.png</file>
     <file>icons/m.png</file>
     <file>icons/m_vzl_max.png</file>
     <file>icons/m_y_beta.png</file>
     <file>icons/m_y_delta_e.png</file>
     <file>icons/m_y_delta_n.png</file>
+    <file>icons/m_y_delta_nru.png</file>
     <file>icons/m_y_delta_p.png</file>
+    <file>icons/m_y_dr.png</file>
     <file>icons/m_yf_tr.png</file>
+    <file>icons/m_y.png</file>
+    <file>icons/m_y_s_n.png</file>
     <file>icons/m_ys_sk.png</file>
+    <file>icons/n_ok_l.png</file>
+    <file>icons/n_ok.png</file>
+    <file>icons/n_ok_pr.png</file>
+    <file>icons/n_pk_1.png</file>
+    <file>icons/n_pr_k.png</file>
+    <file>icons/phi_kon.png</file>
     <file>icons/p_pf.png</file>
+    <file>icons/psi_sr.png</file>
     <file>icons/rho.png</file>
     <file>icons/s_kr.png</file>
+    <file>icons/s_n.png</file>
+    <file>icons/s.png</file>
+    <file>icons/t_f.png</file>
+    <file>icons/t.png</file>
     <file>icons/v_otk.png</file>
     <file>icons/v_otr_2.png</file>
     <file>icons/v_otr.png</file>
+    <file>icons/v.png</file>
     <file>icons/v_vzl.png</file>
     <file>icons/xi_1.png</file>
+    <file>icons/xi_2.png</file>
+    <file>icons/x_n.png</file>
+    <file>icons/x_ok.png</file>
+    <file>icons/x_pk.png</file>
+    <file>icons/x.png</file>
+    <file>icons/y.png</file>
     <file>icons/z_a.png</file>
+    <file>icons/z_beta.png</file>
+    <file>icons/z_delta_n.png</file>
+    <file>icons/z_delta_nru.png</file>
     <file>icons/z_dv.png</file>
+    <file>icons/z_g.png</file>
+    <file>icons/_z_gr.png</file>
+    <file>icons/z_gr.png</file>
+    <file>icons/_z.png</file>
+    <file>icons/z.png</file>
+    <file>icons/z_sk_ok.png</file>
+    <file>icons/z_sk.png</file>
+    <file>icons/z_sk_pr_k.png</file>
+    <file>icons/z_s_n.png</file>
 
     <file>config/formulas.json</file>
   </qresource>

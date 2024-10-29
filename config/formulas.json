@@ -120,9 +120,9 @@
     },
     {
         "id": "dr",
-        "expr": "(m_y_delta_n+m_y_beta+m_ys_sk+m_y_delta_p+m_y_delta_e+dpsi/dt_2*j_y-m_yf_tr)/z_dv",
+        "expr": "(m_y_delta_nru+m_y_beta+m_ys_sk+m_y_delta_p+m_y_delta_e+dpsi/dt_2*j_y-m_yf_tr)/z_dv",
         "params": [
-            { "id": "m_y_delta_n" },
+            { "id": "m_y_delta_nru" },
             { "id": "m_y_beta" },
             { "id": "m_ys_sk" },
             { "id": "m_y_delta_p" },
@@ -142,6 +142,222 @@
             { "id": "m" },
             { "id": "v_otk" },
             { "id": "v_vzl" }
+        ]
+    },
+    {
+        "id": "l_3",
+        "expr": "l_otk+z_gr/tan(psi_sr*pi/180)",
+        "params": [
+            { "id": "l_otk" },
+            { "id": "z_gr" },
+            { "id": "psi_sr" }
+        ]
+    },
+    {
+        "id": "xi_2",
+        "expr": "(_l_1-_l_3+_z)/2*_z_gr",
+        "params": [
+            { "id": "_l_1" },
+            { "id": "_l_3" },
+            { "id": "_z" },
+            { "id": "_z_gr" }
+        ]
+    },
+    {
+        "id": "dv_z",
+        "expr": "1/m*(f_sk*(dn_ok+dn_pk)-z_delta_nru*delta_nru+z_beta*beta)/t",
+        "params": [
+            { "id": "m" },
+            { "id": "f_sk" },
+            { "id": "dn_ok" },
+            { "id": "dn_pk" },
+            { "id": "z_delta_nru" },
+            { "id": "delta_nru" },
+            { "id": "z_beta" },
+            { "id": "beta" },
+            { "id": "t" }
+        ]
+    },
+    {
+        "id": "z_g",
+        "expr": "dv_z/t_f",
+        "params": [
+            { "id": "dv_z" },
+            { "id": "t_f" }
+        ]
+    },
+    {
+        "id": "j_sr",
+        "expr": "v_otk^2/(2*l_otk)",
+        "params": [
+            { "id": "v_otk" },
+            { "id": "l_otk" }
+        ]
+    },
+    {
+        "id": "j_sr_otk",
+        "expr": "(v_otr^2-v_otk^2)/(2*l_rasp)",
+        "params": [
+            { "id": "v_otr" },
+            { "id": "v_otk" },
+            { "id": "l_rasp" }
+        ]
+    },
+    {
+        "id": "m_y_delta_n",
+        "expr": "-1*z_s_n*x_n",
+        "params": [
+            { "id": "z_s_n" },
+            { "id": "x_n" }
+        ]
+    },
+    {
+        "id": "delta_nru",
+        "expr": "m_y_dr/(z_delta_nru*(l_vo+x_n))",
+        "params": [
+            { "id": "m_y_dr" },
+            { "id": "z_delta_nru" },
+            { "id": "l_vo" },
+            { "id": "x_n" }
+        ]
+    },
+    {
+        "id": "delta_n",
+        "expr": "m_y_dr/(z_delta_n*(l_vo+x_n))",
+        "params": [
+            { "id": "m_y_dr" },
+            { "id": "z_delta_n" },
+            { "id": "l_vo" },
+            { "id": "x_n" }
+        ]
+    },
+    {
+        "id": "phi_kon",
+        "expr": "(v_vzl-v_otk)/j_sr*t",
+        "params": [
+            { "id": "v_vzl" },
+            { "id": "v_otk" },
+            { "id": "j_sr" },
+            { "id": "t" }
+        ]
+    },
+    {
+        "id": "mc_y",
+        "expr": "m_y*rho*v^2/2*s*l",
+        "params": [
+            { "id": "m_y" },
+            { "id": "rho" },
+            { "id": "v" },
+            { "id": "s" },
+            { "id": "l" }
+        ]
+    },
+    {
+        "id": "mc_y_s_n",
+        "expr": "m_y_s_n*s_n*rho*v^2/2*s*l",
+        "params": [
+            { "id": "m_y_s_n" },
+            { "id": "s_n" },
+            { "id": "rho" },
+            { "id": "v" },
+            { "id": "s" },
+            { "id": "l" }
+        ]
+    },
+    {
+        "id": "z",
+        "expr": "c_z*rho*v^2/2*s",
+        "params": [
+            { "id": "c_z" },
+            { "id": "rho" },
+            { "id": "v" },
+            { "id": "s" }
+        ]
+    },
+    {
+        "id": "z_delta_n",
+        "expr": "c_z_delta_n*rho*v^2/2*s_kr",
+        "params": [
+            { "id": "c_z_delta_n" },
+            { "id": "rho" },
+            { "id": "v" },
+            { "id": "s_kr" }
+        ]
+    },
+    {
+        "id": "z_delta_nru",
+        "expr": "c_z_s_n*delta_nru*rho*v^2/2",
+        "params": [
+            { "id": "c_z_s_n" },
+            { "id": "delta_nru" },
+            { "id": "rho" },
+            { "id": "v" }
+        ]
+    },
+    {
+        "id": "x",
+        "expr": "c_x*rho*v^2/2*s_kr",
+        "params": [
+            { "id": "c_x" },
+            { "id": "rho" },
+            { "id": "v" },
+            { "id": "s_kr" }
+        ]
+    },
+    {
+        "id": "y",
+        "expr": "c_y*rho*v^2/2*s_kr",
+        "params": [
+            { "id": "c_y" },
+            { "id": "rho" },
+            { "id": "v" },
+            { "id": "s_kr" }
+        ]
+    },
+    {
+        "id": "n_pk_1",
+        "expr": "(g-y)*x_pk/b",
+        "params": [
+            { "id": "g" },
+            { "id": "y" },
+            { "id": "x_pk" },
+            { "id": "b" }
+        ]
+    },
+    {
+        "id": "n_ok",
+        "expr": "(g-y)*x_ok/(2*b)",
+        "params": [
+            { "id": "g" },
+            { "id": "y" },
+            { "id": "x_ok" },
+            { "id": "b" }
+        ]
+    },
+    {
+        "id": "z_sk_pr_k",
+        "expr": "f_sk*n_pr_k",
+        "params": [
+            { "id": "f_sk" },
+            { "id": "n_pr_k" }
+        ]
+    },
+    {
+        "id": "z_sk_ok",
+        "expr": "f_sk*(n_ok_l+n_ok_pr)",
+        "params": [
+            { "id": "f_sk" },
+            { "id": "n_ok_l" },
+            { "id": "n_ok_pr" }
+        ]
+    },
+    {
+        "id": "z_sk",
+        "expr": "f_tr_sk*dn_opor*cos(alpha_pk*pi/180)",
+        "params": [
+            { "id": "f_tr_sk" },
+            { "id": "dn_opor" },
+            { "id": "alpha_pk" }
         ]
     }
 ]
