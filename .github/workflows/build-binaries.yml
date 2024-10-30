@@ -30,7 +30,7 @@ jobs:
         env:
           cache-name: qt-installation-cache
         with:
-          path: ${{ runner.workspace }}/Qt
+          path: ${{ github.workspace }}/qt
           key: ${{ runner.os }}-${{ env.cache-name }}
 
       - name: Install Qt
@@ -40,6 +40,7 @@ jobs:
           version: "5.15.2"
           host: ${{ matrix.platform }}
           target: "desktop"
+          dir: ${{ github.workspace }}/qt
 
       - name: Set reusable strings
         id: strings
@@ -49,7 +50,7 @@ jobs:
           echo "binaries-dir=${{ github.workspace }}/build/bin/$(
             [ "${{ matrix.platform }}" = "windows" ] && echo "${{ matrix.build_type }}/"
           )" >> "$GITHUB_OUTPUT"
-    
+
       - name: Checkout repo
         uses: actions/checkout@v4
 
