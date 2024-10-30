@@ -80,6 +80,3 @@ jobs:
 
       - name: Download built binaries
         uses: actions/download-artifact@v4
-
-  release:
-    runs-on: ubuntu-latest
