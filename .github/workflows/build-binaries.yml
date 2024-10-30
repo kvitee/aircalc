@@ -40,15 +40,15 @@ jobs:
       - name: Build
         run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }}
 
-      - if: "${{ matrix.platform }} == 'windows'"
-        name: Archive .exe only binaries
+      - name: Archive .exe only binaries
         uses: actions/upload-artifact@v4
+        if: "${{ matrix.platform }} == 'windows'"
         with:
           name: "aircalc-windows-exe-only-${{ github.ref_name }}"
-          path: bin/${{ matrix.build_type }}
+          path: build/bin/${{ matrix.build_type }}
 
-      - if: "${{ matrix.platform }} == 'windows'"
-        name: Deploy
+      - name: Deploy
+        if: "${{ matrix.platform }} == 'windows'"
         run: |
           cd build/bin/${{ matrix.build_type }}
           windeployqt aircalc.exe
@@ -57,9 +57,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: "aircalc-${{ matrix.platform }}-${{ github.ref_name }}"
-          path: bin/
+          path: build/bin/
 
       - name: Download built binaries
         uses: actions/download-artifact@v4
-        with:
-          name: "aircalc-${{ matrix.platform }}-${{ github.ref_name }}"
