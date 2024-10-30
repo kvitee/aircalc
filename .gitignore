@@ -76,3 +76,6 @@ CMakeUserPresets.json
 
 # Binaries directory
 bin/
+
+# Include all workflows
+!.github/workflows/*.yml
