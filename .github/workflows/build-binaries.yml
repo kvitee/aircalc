@@ -2,8 +2,6 @@ name: Build binaries
 
 on:
   push:
-    branches:
-      - "cache-qt"
     tags:
       - "v\\d+.\\d+.\\d+"
 
