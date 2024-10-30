@@ -1,0 +1,65 @@
+name: Build binaries
+
+on:
+  push:
+    branches:
+      - "multiplatform-build-workflow"
+    tags:
+      - "v\\d+.\\d+.\\d+"
+
+jobs:
+  build:
+    runs-on: ${{ matrix.runner_os }}
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        platform: [linux, windows]
+        build_type: [Release]
+        include:
+          - platform: linux
+            runner_os: ubuntu-24.04
+          - platform: windows
+            runner_os: windows-2022
+
+    steps:
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4.0.0
+        with:
+          version: "5.15.2"
+          host: ${{ matrix.platform }}
+          target: "desktop"
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure CMake
+        run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -B ${{ github.workspace }}/build
+
+      - name: Build
+        run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }}
+
+      - if: "${{ matrix.platform }} == 'windows'"
+        name: Archive .exe only binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: "aircalc-windows-exe-only-${{ github.ref_name }}"
+          path: bin/${{ matrix.build_type }}
+
+      - if: "${{ matrix.platform }} == 'windows'"
+        name: Deploy
+        run: |
+          cd build/bin/${{ matrix.build_type }}
+          windeployqt aircalc.exe
+
+      - name: Archive built binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: "aircalc-${{ matrix.platform }}-${{ github.ref_name }}"
+          path: bin/
+
+      - name: Download built binaries
+        uses: actions/download-artifact@v4
+        with:
+          name: "aircalc-${{ matrix.platform }}-${{ github.ref_name }}"
