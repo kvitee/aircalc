@@ -55,6 +55,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure CMake
+        env:
+          CMAKE_PREFIX_PATH: ${{ env.Qt5_Dir }}
         run: cmake -B ${{ steps.strings.outputs.build-dir }}
                    -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
 
