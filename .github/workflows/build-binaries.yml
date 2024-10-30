@@ -35,7 +35,7 @@ jobs:
         id: strings
         shell: bash
         run: |
-          echo "build-dir=${{ github.workspace }}/build/"
+          echo "build-dir=${{ github.workspace }}/build/" >> "$GITHUB_OUTPUT"
           echo "binaries-dir=${{ github.workspace }}/build/bin/$(
             [ "${{ matrix.platform }}" = "windows" ] && echo "${{ matrix.build_type }}/"
           )" >> "$GITHUB_OUTPUT"
