@@ -31,33 +31,42 @@ jobs:
           host: ${{ matrix.platform }}
           target: "desktop"
 
+      - name: Set reusable strings
+        id: strings
+        shell: bash
+        run: |
+          echo "binaries-dir=${{ github.workspace }}/build/bin/$(
+            [ "${{ matrix.platform }}" = "windows" ] && echo "${{ matrix.build_type }}/"
+          )" >> "$GITHUB_OUTPUT"
+    
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Configure CMake
-        run: cmake -DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -B ${{ github.workspace }}/build
+        run: cmake -B ${{ steps.strings.outputs.binaries-dir }}
+                   -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
 
       - name: Build
-        run: cmake --build ${{ github.workspace }}/build --config ${{ matrix.build_type }}
+        run: cmake --build ${{ steps.strings.outputs.binaries-dir }} --config ${{ matrix.build_type }}
 
       - name: Archive .exe only binaries
         uses: actions/upload-artifact@v4
         if: ${{ startsWith(runner.os, 'windows') }}
         with:
           name: "aircalc-windows-exe-only-${{ github.ref_name }}"
-          path: build/bin/${{ matrix.build_type }}
+          path: ${{ steps.strings.outputs.binaries-dir }}
 
       - name: Deploy
         if: ${{ startsWith(runner.os, 'windows') }}
+        working-directory: ${{ steps.strings.outputs.binaries-dir }}
         run: |
-          cd build/bin/${{ matrix.build_type }}
           windeployqt aircalc.exe
 
       - name: Archive built binaries
         uses: actions/upload-artifact@v4
         with:
           name: "aircalc-${{ matrix.platform }}-${{ github.ref_name }}"
-          path: build/bin/
+          path: ${{ steps.strings.outputs.binaries-dir }}
 
       - name: Download built binaries
         uses: actions/download-artifact@v4
