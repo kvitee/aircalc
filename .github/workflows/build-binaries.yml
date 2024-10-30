@@ -9,67 +9,68 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.runner_os }}
+    runs-on: ${{ matrix.os }}
 
     strategy:
       fail-fast: false
 
       matrix:
-        platform: [linux, windows]
+        os: [ubuntu-24.04, windows-2022]
+        qt_version: [5.15.2]
         build_type: [Release]
-        include:
-          - platform: linux
-            runner_os: ubuntu-24.04
-          - platform: windows
-            runner_os: windows-2022
 
     steps:
       - name: Install Qt
         uses: jurplel/install-qt-action@v4.0.0
         with:
-          version: "5.15.2"
-          host: ${{ matrix.platform }}
-          target: "desktop"
+          version: ${{ matrix.qt_version }}
+          target: desktop
+          dir: ${{ github.workspace }}/qt
           cache: true
           cache-key-prefix: qt-installation
 
-      - name: Set reusable strings
-        id: strings
+      - name: Set Windows binaries dir suffix
+        id: suffixes
+        if: startsWith(runner.os, 'windows')
+        shell: bash
+        run: |
+          echo "bin-suffix=${{ matrix.build_type }}/" >> "$GITHUB_OUTPUT"
+
+      - name: Set directories
+        id: dirs
         shell: bash
         run: |
           echo "build-dir=${{ github.workspace }}/build/" >> "$GITHUB_OUTPUT"
-          echo "binaries-dir=${{ github.workspace }}/build/bin/$(
-            [ "${{ matrix.platform }}" = "windows" ] && echo "${{ matrix.build_type }}/"
-          )" >> "$GITHUB_OUTPUT"
+          echo "binaries-dir=${{ github.workspace }}/build/bin/${{ steps.suffixes.outputs.bin-suffix }} >> "$GITHUB_OUTPUT"
 
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Configure CMake
-        run: cmake -B ${{ steps.strings.outputs.build-dir }}
+        run: cmake -B ${{ steps.dirs.outputs.build-dir }}
                    -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
 
       - name: Build
-        run: cmake --build ${{ steps.strings.outputs.build-dir }} --config ${{ matrix.build_type }}
+        run: cmake --build ${{ steps.dirs.outputs.build-dir }} --config ${{ matrix.build_type }}
 
       - name: Archive .exe only binaries
         uses: actions/upload-artifact@v4
-        if: ${{ startsWith(runner.os, 'windows') }}
+        if: startsWith(runner.os, 'windows')
         with:
-          name: "aircalc-windows-exe-only-${{ github.ref_name }}"
-          path: ${{ steps.strings.outputs.binaries-dir }}
+          name: "aircalc-${{ runner.arch }}-exe-only-${{ github.ref_name }}"
+          path: ${{ steps.dirs.outputs.binaries-dir }}
 
       - name: Deploy
         if: ${{ startsWith(runner.os, 'windows') }}
-        working-directory: ${{ steps.strings.outputs.binaries-dir }}
+        working-directory: ${{ steps.dirs.outputs.binaries-dir }}
         run: |
           windeployqt aircalc.exe
 
       - name: Archive built binaries
         uses: actions/upload-artifact@v4
         with:
-          name: "aircalc-${{ matrix.platform }}-${{ github.ref_name }}"
-          path: ${{ steps.strings.outputs.binaries-dir }}
+          name: "aircalc-${{ runner.arch }}-${{ github.ref_name }}"
+          path: ${{ steps.dirs.outputs.binaries-dir }}
 
       - name: Download built binaries
         uses: actions/download-artifact@v4
