@@ -2,8 +2,6 @@ name: Build binaries
 
 on:
   push:
-    branches:
-      - "multiplatform-build-workflow"
     tags:
       - "v\\d+.\\d+.\\d+"
 
