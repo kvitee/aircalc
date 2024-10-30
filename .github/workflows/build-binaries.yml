@@ -35,6 +35,7 @@ jobs:
         id: strings
         shell: bash
         run: |
+          echo "build-dir=${{ github.workspace }}/build/"
           echo "binaries-dir=${{ github.workspace }}/build/bin/$(
             [ "${{ matrix.platform }}" = "windows" ] && echo "${{ matrix.build_type }}/"
           )" >> "$GITHUB_OUTPUT"
@@ -43,11 +44,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure CMake
-        run: cmake -B ${{ steps.strings.outputs.binaries-dir }}
+        run: cmake -B ${{ steps.strings.outputs.build-dir }}
                    -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
 
       - name: Build
-        run: cmake --build ${{ steps.strings.outputs.binaries-dir }} --config ${{ matrix.build_type }}
+        run: cmake --build ${{ steps.strings.outputs.build-dir }} --config ${{ matrix.build_type }}
 
       - name: Archive .exe only binaries
         uses: actions/upload-artifact@v4
