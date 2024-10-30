@@ -42,9 +42,6 @@ jobs:
           target: "desktop"
           dir: ${{ github.workspace }}/qt
 
-      - name: List Qt installation files
-        run: find ${{ env.Qt5_Dir }}
-
       - name: Set reusable strings
         id: strings
         shell: bash
@@ -58,9 +55,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Configure CMake
+        env:
+          CMAKE_PREFIX_PATH: ${{ env.Qt5_Dir }}
         run: cmake -B ${{ steps.strings.outputs.build-dir }}
                    -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
                    -DCMAKE_PREFIX_PATH=${{ env.Qt5_Dir }}/lib/cmake/
+                   -DQt5_DIR=${{ env.Qt5_Dir }}/lib/cmake/Qt5/
 
       - name: Build
         run: cmake --build ${{ steps.strings.outputs.build-dir }} --config ${{ matrix.build_type }}
