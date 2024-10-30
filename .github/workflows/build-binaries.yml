@@ -24,15 +24,6 @@ jobs:
             runner_os: windows-2022
 
     steps:
-      - name: Cache Qt installation
-        id: cache-qt
-        uses: actions/cache@v3
-        env:
-          cache-name: qt-installation-cache
-        with:
-          path: ${{ runner.workspace }}/Qt
-          key: ${{ runner.os }}-${{ env.cache-name }}
-
       - name: Install Qt
         uses: jurplel/install-qt-action@v4.0.0
         with:
