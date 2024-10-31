@@ -2,8 +2,6 @@ name: Build binaries
 
 on:
   push:
-    branches:
-      - "qt-dir"
     tags:
       - "v\\d+.\\d+.\\d+"
 
