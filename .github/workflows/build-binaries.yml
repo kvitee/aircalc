@@ -48,9 +48,11 @@ jobs:
 
       - name: Configure CMake
         env:
+          CMAKE_PREFIX_PATH: ${{ env.Qt5_DIR }}
           Qt5_DIR: ${{ env.Qt5_DIR }}/Qt5/
         run: cmake -B ${{ steps.dirs.outputs.build-dir }}
                    -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+                   -DCMAKE_PREFIX_PATH=${{ env.Qt5_DIR }}
 
       - name: Build
         run: cmake --build ${{ steps.dirs.outputs.build-dir }} --config ${{ matrix.build_type }}
