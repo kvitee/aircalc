@@ -92,6 +92,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
+          token: ${{ github.token }}
           files: |
             LICENSE
             aircalc-Windows-X64-auto-release-exe-only.zip
