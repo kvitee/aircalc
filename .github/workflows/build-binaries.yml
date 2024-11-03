@@ -88,3 +88,12 @@ jobs:
 
       - name: List files
         run: tree
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            LICENSE
+            aircalc-Windows-X64-auto-release-exe-only.zip
+            aircalc-Windows-X64-auto-release.zip
+            aircalc-Linux-X64-auto-release.zip
