@@ -53,7 +53,7 @@ void ParamEditWidget::composeWidgets() {
 void ParamEditWidget::connectWidgets() {
   QObject::connect(
     m_fieldWidget, &QLineEdit::textChanged,
-    this, [](const QString &text) {
+    this, [this](const QString &text) {
       emit valueChanged(QString(text).replace(',', '.').toDouble());
     }
   );
