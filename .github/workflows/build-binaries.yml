@@ -2,6 +2,8 @@ name: Build binaries
 
 on:
   push:
+    branches:
+      - "auto-release"
     tags:
       - "v\\d+.\\d+.\\d+"
 
@@ -71,3 +73,28 @@ jobs:
 
       - name: Download built binaries
         uses: actions/download-artifact@v4
+
+  release:
+    runs-on: ubuntu-latest
+
+    needs: build
+
+    steps:
+      - name: Download binaries
+        uses: actions/download-artifact@v4
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: List files
+        run: tree
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ github.token }}
+          files: |
+            LICENSE
+            aircalc-Windows-X64-auto-release-exe-only.zip
+            aircalc-Windows-X64-auto-release.zip
+            aircalc-Linux-X64-auto-release.zip
