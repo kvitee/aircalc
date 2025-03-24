@@ -8,6 +8,8 @@
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QMainWindow>
 
+#include <QtGui/QCloseEvent>
+
 
 class MainWindow : public QMainWindow {
   Q_OBJECT
@@ -19,7 +21,12 @@ class MainWindow : public QMainWindow {
     );
 
   protected:
+    void closeEvent(QCloseEvent *event);
+
     void setup();
+
+    void saveSettings();
+    void restoreSettings();
 };
 
 
