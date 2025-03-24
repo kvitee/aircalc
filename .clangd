@@ -1,0 +1,5 @@
+CompileFlags:
+  Add:
+    - "-Wall"
+    - "-I./include/"
+    - "-I/usr/include/qt6/"
