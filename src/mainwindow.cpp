@@ -9,6 +9,7 @@
 #include <QtGui/QCloseEvent>
 
 #include "mainwindow.hpp"
+#include "formulas_calculator.hpp"
 
 
 MainWindow::MainWindow(
@@ -18,6 +19,7 @@ MainWindow::MainWindow(
   : QMainWindow(parent, flags)
 {
   setup();
+  initWidgets();
 
   restoreSettings();
 }
@@ -33,6 +35,11 @@ void MainWindow::setup() {
   resize(QSize(680, 480));
 
   setWindowTitle("Калькулятор формул");
+}
+
+void MainWindow::initWidgets() {
+  auto cw = new FormulasCalculator();
+  setCentralWidget(cw);
 }
 
 void MainWindow::saveSettings() {

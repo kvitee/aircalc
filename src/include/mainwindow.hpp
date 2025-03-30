@@ -24,6 +24,7 @@ class MainWindow : public QMainWindow {
     void closeEvent(QCloseEvent *event);
 
     void setup();
+    void initWidgets();
 
     void saveSettings();
     void restoreSettings();
