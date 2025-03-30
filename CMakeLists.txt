@@ -16,16 +16,20 @@ include_directories(src/include/)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-find_package(Qt6 COMPONENTS Core Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Core Widgets Gui REQUIRED)
 
 add_executable(aircalc WIN32
   # Headers
   src/include/application.hpp
   src/include/mainwindow.hpp
+  src/include/formulas_calculator.hpp
+  src/include/labeled_line_edit.hpp
   # Sources
   src/main.cpp
   src/application.cpp
   src/mainwindow.cpp
+  src/formulas_calculator.cpp
+  src/labeled_line_edit.cpp
 )
 
-target_link_libraries(aircalc Qt6::Core Qt6::Widgets)
+target_link_libraries(aircalc Qt6::Core Qt6::Widgets Qt6::Gui)
