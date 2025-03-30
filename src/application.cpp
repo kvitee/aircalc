@@ -12,6 +12,10 @@ Application::Application(int &argc, char **argv)
   QCoreApplication::setOrganizationName("kvsoft");
   QCoreApplication::setApplicationName("aircalc");
 
+  auto f = font();
+  f.setPointSizeF(f.pointSizeF() * 1.2);
+  setFont(f);
+
   m_mainWindow = new MainWindow();
   m_mainWindow->show();
 }
