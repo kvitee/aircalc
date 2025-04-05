@@ -1,0 +1,81 @@
+name: Build binaries
+
+on:
+  push:
+    branches:
+      - "main"
+    tags:
+      - "v\\d+.\\d+.\\d+"
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        os:
+          - ubuntu-24.04
+          - windows-2022
+        qt_version: 
+          - 6.9.*
+        cxx_compiler: 
+          - g++
+          - clang++
+        build_type: 
+          - Release
+
+    steps:
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ matrix.qt_version }}
+          cache: true
+          cache-key-prefix: qt-installation
+
+      - name: Set Windows binaries dir suffix
+        id: suffixes
+        if: startsWith(runner.arch, 'Windows')
+        shell: bash
+        run: |
+          echo "bin-suffix=${{ matrix.build_type }}/" >> "$GITHUB_OUTPUT"
+
+      - name: Set directories
+        id: dirs
+        shell: bash
+        run: |
+          echo "binaries-dir=${{ github.workspace }}/build/bin/${{ steps.suffixes.outputs.bin-suffix }}" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Configure CMake
+        run: cmake -DCMAKE_CXX_COMPILER=${{ matrix.cxx_compiler }}
+                   -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+                   -B build/ .
+
+      - name: Build
+        run: cmake --config ${{ matrix.build_type }} --build build/
+
+      - name: Deploy on Windows
+        if: startsWith(runner.arch, 'Windows')
+        working-directory: ${{ steps.dirs.outputs.binaries-dir }}
+        run: |
+          windeployqt aircalc.exe
+
+      - name: Upload built binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: "aircalc-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}"
+          path: ${{ steps.dirs.outputs.binaries-dir }}
+
+      - name: Upload single aircalc.exe binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: "aircalc-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}-exe-only"
+          path: ${{ steps.dirs.outputs.binaries-dir }}/aircalc.exe
+          if-no-files-found: ignore
+
+      - name: Download built binaries
+        uses: actions/download-artifact@v4
