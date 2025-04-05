@@ -1,0 +1,31 @@
+<RCC>
+  <qresource prefix="/">
+    <file>../icons/c_y.png</file>
+    <file>../icons/g.png</file>
+    <file>../icons/j_sr.png</file>
+    <file>../icons/_l_1.png</file>
+    <file>../icons/l_1.png</file>
+    <file>../icons/_l_2.png</file>
+    <file>../icons/l_2.png</file>
+    <file>../icons/_l_3.png</file>
+    <file>../icons/l_3.png</file>
+    <file>../icons/l_otk.png</file>
+    <file>../icons/l_rasp.png</file>
+    <file>../icons/l_torm.png</file>
+    <file>../icons/_l_vpp.png</file>
+    <file>../icons/l_vpp.png</file>
+    <file>../icons/m.png</file>
+    <file>../icons/psi_sr.png</file>
+    <file>../icons/rho.png</file>
+    <file>../icons/s_kr.png</file>
+    <file>../icons/v_otk.png</file>
+    <file>../icons/v_otr_2.png</file>
+    <file>../icons/xi_1.png</file>
+    <file>../icons/xi_2.png</file>
+    <file>../icons/_z_gr.png</file>
+    <file>../icons/z_gr.png</file>
+    <file>../icons/_z.png</file>
+
+    <file>../config/formulas.json</file>
+  </qresource>
+</RCC>

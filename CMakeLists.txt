@@ -19,6 +19,8 @@ set(CMAKE_AUTORCC ON)
 find_package(Qt6 COMPONENTS Core Widgets Gui REQUIRED)
 
 add_executable(aircalc WIN32
+  # Resources
+  src/resources.qrc
   # Headers
   src/include/application.hpp
   src/include/mainwindow.hpp
