@@ -53,7 +53,7 @@ void FormulasCalculator::addParamField(const QString &id) {
   if (m_params.contains(id)) return;
 
   auto field = new LabeledLineEdit(
-    QPixmap(QString("icons/icon_id.png").replace("icon_id", id))
+    QPixmap(QString(":/icons/icon_id.png").replace("icon_id", id))
   );
 
   field->lineEdit()->setClearButtonEnabled(true);
@@ -78,7 +78,7 @@ void FormulasCalculator::addParamField(const QString &id) {
 
 void FormulasCalculator::addResultField(const QString &id) {
   auto field = new LabeledLineEdit(
-    QPixmap(QString("icons/icon_id.png").replace("icon_id", id))
+    QPixmap(QString(":/icons/icon_id.png").replace("icon_id", id))
   );
 
   field->lineEdit()->setReadOnly(true);

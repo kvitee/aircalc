@@ -44,7 +44,7 @@ void MainWindow::initWidgets() {
   auto cw = new FormulasCalculator();
   setCentralWidget(cw);
 
-  QFile f("config/formulas.json");
+  QFile f(":/config/formulas.json");
   f.open(QIODevice::ReadOnly);
 
   QJsonDocument doc = QJsonDocument::fromJson(f.readAll());
