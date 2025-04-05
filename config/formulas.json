@@ -3,7 +3,7 @@
   "l_torm=7170-10.34*m+4.067*v_otk+0.0035*m^2+0.00518-v_otk*m-0.017*v_otk^2",
   "v_otr_2=2*g/(c_y*rho*s_kr)",
   "l_1=v_otr_2/(2*j_sr)",
-  "l_3=l_otk+z_gr/tan(psi_sr)",
+  "l_3=l_otk+z_gr/tan(psi_sr*pi/180)",
   "_l_1=l_1/l_vpp",
   "_l_2=l_2/l_vpp",
   "_l_3=l_3/l_vpp",
