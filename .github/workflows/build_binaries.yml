@@ -43,6 +43,12 @@ jobs:
             cpp_compiler: cl
 
     steps:
+      - name: Downcase runner os and arch
+        shell: bash
+        run: |
+          OS=${{ runner.os }} echo "RUNNER_OS=${OS,,}" >> $GITHUB_ENV
+          ARCH=${{ runner.arch }} echo "RUNNER_ARCH=${ARCH,,}" >> $GITHUB_ENV
+
       - name: Install Qt
         uses: jurplel/install-qt-action@v4
         with:
@@ -83,7 +89,7 @@ jobs:
       - name: Upload built binaries
         uses: actions/upload-artifact@v4
         with:
-          name: "aircalc-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}"
+          name: "aircalc-${{ env.RUNNER_OS }}-${{ env.RUNNER_ARHC }}-${{ github.ref_name }}"
           path: ${{ steps.dirs.outputs.binaries-dir }}
 
       - name: Upload single aircalc.exe binary
