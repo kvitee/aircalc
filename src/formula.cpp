@@ -24,8 +24,8 @@ Formula::Formula(const QString &expr) {
 }
 
 const QMap<QString, qreal> Formula::m_consts = {
-  { "pi", M_PIl },
-  { "e", M_El },
+  { "pi", M_PI },
+  { "e", M_E },
 };
 
 const QMap<QChar, QPair<quint8, Formula::fn_t>> Formula::m_ops = {
