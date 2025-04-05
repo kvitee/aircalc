@@ -40,7 +40,7 @@ jobs:
           - os: windows-2022
             cpp_compiler: g++
           - os: ubuntu-24.04
-            c_compiler: cl
+            cpp_compiler: cl
 
     steps:
       - name: Install Qt
