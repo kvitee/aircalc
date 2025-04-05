@@ -13,7 +13,6 @@
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QPushButton>
 
-#include "QtCore/qset.h"
 #include "formula.hpp"
 
 
