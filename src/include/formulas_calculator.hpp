@@ -5,11 +5,14 @@
 #include <QtCore/Qt>
 #include <QtCore/QObject>
 #include <QtCore/QString>
+#include <QtCore/QVector>
 #include <QtCore/QMap>
 
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QPushButton>
+
+#include "formula.hpp"
 
 
 class FormulasCalculator : public QWidget {
@@ -18,11 +21,16 @@ class FormulasCalculator : public QWidget {
   public:
     FormulasCalculator(QWidget *parent = nullptr);
 
+    void addFormula(const QString &expr);
+
     void addParamField(const QString &id);
     void addResultField(const QString &id);
 
   public slots:
     void calculate();
+
+  signals:
+    void calculated(const Formula &f);
 
   protected:
     QWidget *m_paramsForm;
@@ -32,6 +40,9 @@ class FormulasCalculator : public QWidget {
     QPushButton *m_calcButton;
 
     QMap<QString, double> m_args;
+    QMap<QString, double> m_results;
+
+    QVector<Formula> m_formulas;
 
     void composeWidgets();
     void connectWidgets();
