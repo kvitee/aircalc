@@ -52,7 +52,7 @@ jobs:
 
       - name: Set Windows binaries dir suffix
         id: suffixes
-        if: startsWith(runner.os, "Windows")
+        if: startsWith(runner.os, 'Windows')
         shell: bash
         run: |
           echo "bin-suffix=${{ matrix.build_type }}/" >> "$GITHUB_OUTPUT"
@@ -75,7 +75,7 @@ jobs:
         run: cmake --build build/ --config ${{ matrix.build_type }}
 
       - name: Deploy on Windows
-        if: startsWith(runner.os, "Windows")
+        if: startsWith(runner.os, 'Windows')
         working-directory: ${{ steps.dirs.outputs.binaries-dir }}
         run: |
           windeployqt aircalc.exe
