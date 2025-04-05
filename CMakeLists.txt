@@ -24,12 +24,14 @@ add_executable(aircalc WIN32
   src/include/mainwindow.hpp
   src/include/formulas_calculator.hpp
   src/include/labeled_line_edit.hpp
+  src/include/formula.hpp
   # Sources
   src/main.cpp
   src/application.cpp
   src/mainwindow.cpp
   src/formulas_calculator.cpp
   src/labeled_line_edit.cpp
+  src/formula.cpp
 )
 
 target_link_libraries(aircalc Qt6::Core Qt6::Widgets Qt6::Gui)
