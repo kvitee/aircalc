@@ -53,6 +53,8 @@ void FormulasCalculator::addParamField(const QString &id) {
   auto field = new LabeledLineEdit(
     QPixmap(QString("icons/icon_id.png").replace("icon_id", id))
   );
+
+  field->lineEdit()->setClearButtonEnabled(true);
   field->lineEdit()->setValidator(new QDoubleValidator());
 
   m_paramsForm->layout()->addWidget(field);
@@ -129,7 +131,6 @@ void FormulasCalculator::composeWidgets() {
 
   m_splitter->addWidget(m_paramsForm);
   m_splitter->addWidget(m_resultsForm);
-  m_splitter->setHandleWidth(5);
 
   setLayout(new QVBoxLayout());
 

@@ -32,7 +32,6 @@ void LabeledLineEdit::setupWidgets() {
   m_label->setMinimumWidth(50);
   m_label->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
 
-  m_lineEdit->setClearButtonEnabled(true);
   m_lineEdit->setMinimumHeight(30);
 }
 
