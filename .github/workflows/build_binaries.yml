@@ -89,13 +89,13 @@ jobs:
       - name: Upload built binaries
         uses: actions/upload-artifact@v4
         with:
-          name: "aircalc-${{ env.RUNNER_OS }}-${{ env.RUNNER_ARHC }}-${{ github.ref_name }}"
+          name: "aircalc-${{ env.RUNNER_OS }}-${{ env.RUNNER_ARCH }}-${{ github.ref_name }}"
           path: ${{ steps.dirs.outputs.binaries-dir }}
 
       - name: Upload single aircalc.exe binary
         uses: actions/upload-artifact@v4
         with:
-          name: "aircalc-${{ runner.os }}-${{ runner.arch }}-${{ github.ref_name }}-exe-only"
+          name: "aircalc-${{ env.RUNNER_OS }}-${{ env.RUNNER_ARCH }}-${{ github.ref_name }}-exe-only"
           path: ${{ steps.dirs.outputs.binaries-dir }}/aircalc.exe
           if-no-files-found: ignore
 
