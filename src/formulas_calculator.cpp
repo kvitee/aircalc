@@ -50,6 +50,8 @@ void FormulasCalculator::addFormula(const QString &expr) {
 }
 
 void FormulasCalculator::addParamField(const QString &id) {
+  if (m_params.contains(id)) return;
+
   auto field = new LabeledLineEdit(
     QPixmap(QString("icons/icon_id.png").replace("icon_id", id))
   );
@@ -70,6 +72,8 @@ void FormulasCalculator::addParamField(const QString &id) {
       }
     }
   );
+
+  m_params.insert(id);
 }
 
 void FormulasCalculator::addResultField(const QString &id) {

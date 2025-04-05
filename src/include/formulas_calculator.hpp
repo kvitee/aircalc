@@ -6,12 +6,14 @@
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QVector>
+#include <QtCore/QSet>
 #include <QtCore/QMap>
 
 #include <QtWidgets/QWidget>
 #include <QtWidgets/QSplitter>
 #include <QtWidgets/QPushButton>
 
+#include "QtCore/qset.h"
 #include "formula.hpp"
 
 
@@ -42,6 +44,7 @@ class FormulasCalculator : public QWidget {
     QMap<QString, double> m_args;
     QMap<QString, double> m_results;
 
+    QSet<QString> m_params;
     QVector<Formula> m_formulas;
 
     void composeWidgets();
