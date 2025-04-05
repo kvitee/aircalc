@@ -38,7 +38,7 @@ jobs:
           - os: windows-2022
             cpp_compiler: g++
           - os: windows-2022
-            cpp_compiler: g++
+            cpp_compiler: clang++
           - os: ubuntu-24.04
             cpp_compiler: cl
 
