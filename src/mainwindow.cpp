@@ -1,6 +1,9 @@
 #include <QtCore/Qt>
+#include <QtCore/QFile>
 #include <QtCore/QPoint>
 #include <QtCore/QSize>
+#include <QtCore/QJsonDocument>
+#include <QtCore/QJsonArray>
 #include <QtCore/QSettings>
 
 #include <QtWidgets/QWidget>
@@ -40,6 +43,17 @@ void MainWindow::setup() {
 void MainWindow::initWidgets() {
   auto cw = new FormulasCalculator();
   setCentralWidget(cw);
+
+  QFile f("config/formulas.json");
+  f.open(QIODevice::ReadOnly);
+
+  QJsonDocument doc = QJsonDocument::fromJson(f.readAll());
+
+  f.close();
+
+  for (auto expr : doc.array()) {
+    cw->addFormula(expr.toString());
+  }
 }
 
 void MainWindow::saveSettings() {
